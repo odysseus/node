@@ -13,13 +13,19 @@ const server  = net.createServer(function(conn) {
   connections += 1;
   console.log(Date() + "Subscriber conncted. Total: " + connections);
 
-  conn.write(JSON.stringify({action: "watching", file: watched}) + "\n");
+  conn.write(JSON.stringify({
+                              type: "watching",
+                              file: watched,
+                         timestamp: Date()
+                            })
+                            + "\n");
 
   let watcher = fs.watch(watched, function(event, filename) {
     conn.write(JSON.stringify({
+                               type: "change",
                               event: event,
                                file: filename,
-                               time: Date()
+                          timestamp: Date()
                               })
                               + "\n");
   });
