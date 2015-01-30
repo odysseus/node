@@ -1,3 +1,4 @@
+#! /usr/bin/env node --harmony
 "use strict";
 
 const
@@ -9,19 +10,23 @@ if (!filename) {
   throw Error("A file to watch must be specified");
 }
 
-fs.watch(filename, function() {
+fs.watch(filename, function(event, file) {
   let
     ls = spawn('ls', ['-lh', filename]),
     output = '';
 
-  ls.stdout.on('data', function(chunk){
-    output += chunk.toString();
+  ls.stdout.on('data', function(data){
+    output += data.toString();
+  });
+
+  ls.stderr.on('data', function(err){
+    console.log("Error: " + err.message);
   });
 
   ls.on('close', function(){
-    let parts = output.split(/\s+/);
-    console.dir([parts[0], parts[4], parts[8]]);
+    process.stdout.write(output)
   });
 });
 
 console.log("Now watching " + filename + " for changes...");
+
