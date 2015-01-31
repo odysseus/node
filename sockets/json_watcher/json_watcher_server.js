@@ -17,8 +17,7 @@ const server  = net.createServer(function(conn) {
                               type: "watching",
                               file: watched,
                          timestamp: Date()
-                            })
-                            + "\n");
+                            }) + "\n");
 
   let watcher = fs.watch(watched, function(event, filename) {
     conn.write(JSON.stringify({
@@ -26,8 +25,7 @@ const server  = net.createServer(function(conn) {
                               event: event,
                                file: filename,
                           timestamp: Date()
-                              })
-                              + "\n");
+                              }) + "\n");
   });
 
   conn.on('close', function() {
