@@ -1,3 +1,5 @@
+"use strict";
+
 const
   events = require('events'),
   util = require('util'),
@@ -14,7 +16,7 @@ const
       let boundary = buffer.indexOf("\n");
       while (boundary !== -1) {
         let input = buffer.substr(0, boundary);
-        buffer = buffer.substr(bondary + 1);
+        buffer = buffer.substr(boundary + 1);
         self.emit('message', JSON.parse(input));
         boundary = buffer.indexOf('\n');
       }

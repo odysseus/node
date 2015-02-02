@@ -4,7 +4,7 @@
 
 const
   net = require('net'),
-  client = net.connect({port: 5432});
+  netClient = net.connect({port: 5432}),
 
 client.on('data', function(data) {
   // Read the JSON and catch parsing errors

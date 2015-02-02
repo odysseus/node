@@ -11,7 +11,7 @@ const
 
     // Wait one second and send the second chunk
     let timer = setTimeout(function() {
-      conn.write('et.xt, "timestamp":1358175758495}' + "\n");
+      conn.write('et.txt", "timestamp":1358175758495}' + "\n");
       conn.end();
     }, 1000);
 
