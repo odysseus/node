@@ -11,8 +11,8 @@ if (cluster.isMaster) {
 
   // Master process creates router and dealer sockets
   let
-  router = zmq.socket('router').bind('tcp://127.0.0.1:5433'),
-  dealer = zmq.socket('dealer').bind('ipc://file-dealer.ipc');
+    router = zmq.socket('router').bind('tcp://127.0.0.1:5433'),
+    dealer = zmq.socket('dealer').bind('ipc://file-dealer.ipc');
 
   // Forward messages between router and dealer
   router.on('message', function() {

@@ -9,7 +9,6 @@ const
 
 for (let i=0; i<100; i++) {
   pusher.send(JSON.stringify({
-    a: i,
-    b: i
+    // Data
   }));
 }
